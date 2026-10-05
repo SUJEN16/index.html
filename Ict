@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICT அலகு 1 – தரவு & தகவல் (பயிற்சித் தாள்)</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: #e9f0f7;
+            font-family: 'Segoe UI', 'Noto Sans Tamil', system-ui, sans-serif;
+            padding: 1.5rem 1rem 5rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            position: relative;
+            scroll-behavior: smooth;
+        }
+        .paper {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px rgba(0, 20, 40, 0.12);
+            padding: 2rem 2rem 2.2rem;
+            border: 1px solid #d0dfee;
+        }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #0b2d4b;
+            letter-spacing: -0.01em;
+            border-left: 6px solid #1a7f64;
+            padding-left: 1rem;
+            margin-bottom: 0.4rem;
+        }
+        .subhead {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.8rem;
+            color: #2e4a6a;
+            font-weight: 500;
+            background: #eef6fc;
+            padding: 0.7rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid #d0e2f2;
+        }
+        .timer {
+            background: #0b2d4b;
+            color: #f0f9ff;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            white-space: nowrap;
+        }
+        .timer span {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            background: #1a4a6e;
+            padding: 0.1rem 0.7rem;
+            border-radius: 30px;
+        }
+        section {
+            margin-bottom: 2.2rem;
+        }
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a4a6e;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-bottom: 2px dashed #b6d0e2;
+            padding-bottom: 0.6rem;
+            flex-wrap: wrap;
+        }
+        h2 .badge {
+            background: #1a7f64;
+            color: white;
+            font-size: 0.85rem;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            font-weight: 400;
+            margin-left: auto;
+        }
+        .question {
+            background: #f9fcff;
+            border-radius: 20px;
+            padding: 1.3rem 1.5rem;
+            margin-bottom: 1.3rem;
+            border: 1px solid #cbddee;
+            transition: 0.1s;
+        }
+        .question p {
+            font-weight: 500;
+            color: #0a2a44;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            font-size: 1.02rem;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            background: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid #cbddee;
+            cursor: pointer;
+            transition: 0.1s;
+            font-weight: 450;
+            color: #1e3b5c;
+            font-size: 0.98rem;
+        }
+        .option:hover {
+            background: #e4f0fa;
+            border-color: #1a7f64;
+        }
+        .option input[type="radio"] {
+            accent-color: #1a7f64;
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        .short-answer {
+            margin-top: 0.8rem;
+        }
+        .short-answer label {
+            font-weight: 500;
+            color: #0b2d4b;
+            display: block;
+            margin-bottom: 0.4rem;
+            font-size: 0.98rem;
+        }
+        .short-answer input[type="text"],
+        .short-answer textarea {
+            width: 100%;
+            padding: 0.8rem 1.1rem;
+            border-radius: 18px;
+            border: 1px solid #b6cde0;
+            font-family: 'Segoe UI', 'Noto Sans Tamil', sans-serif;
+            font-size: 0.95rem;
+            background: white;
+            resize: vertical;
+            transition: 0.15s;
+        }
+        .short-answer input:focus,
+        .short-answer textarea:focus {
+            outline: 2px solid #1a7f64;
+            border-color: transparent;
+            background: #ffffff;
+        }
+        .short-answer textarea {
+            min-height: 70px;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2.2rem;
+        }
+        .btn {
+            border: none;
+            background: #1a7f64;
+            color: white;
+            padding: 0.95rem 2.2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: 1px solid #1a7f64;
+            box-shadow: 0 6px 12px rgba(26, 127, 100, 0.2);
+            letter-spacing: 0.3px;
+        }
+        .btn:hover {
+            background: #0e604b;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(26, 127, 100, 0.3);
+        }
+        .btn.secondary {
+            background: white;
+            color: #1a4a6e;
+            border: 1px solid #b6cde0;
+            box-shadow: none;
+        }
+        .btn.secondary:hover {
+            background: #eef6fc;
+            border-color: #1a7f64;
+        }
+        .result-area {
+            margin-top: 2.2rem;
+            background: #f1f9fe;
+            border-radius: 28px;
+            padding: 1.6rem 1.8rem;
+            border-left: 8px solid #1a7f64;
+            font-weight: 500;
+            color: #0b2d4b;
+            display: none;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.04);
+        }
+        .result-area.show {
+            display: block;
+            animation: fadeIn 0.35s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .score-highlight {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a7f64;
+            margin-right: 0.4rem;
+        }
+        .correction {
+            margin-top: 1.4rem;
+            font-size: 0.98rem;
+            border-top: 1px solid #bdd8ec;
+            padding-top: 1.2rem;
+        }
+        .correction details {
+            margin-top: 0.8rem;
+            background: white;
+            border-radius: 20px;
+            padding: 0.8rem 1.4rem;
+            border: 1px solid #d0e2f2;
+        }
+        .correction summary {
+            font-weight: 600;
+            color: #0b2d4b;
+            cursor: pointer;
+            padding: 0.4rem 0;
+            font-size: 1.05rem;
+        }
+        .correction ul {
+            margin-top: 0.8rem;
+            padding-left: 1.6rem;
+        }
+        .correction li {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+        .note {
+            font-size: 0.88rem;
+            color: #4d6b8a;
+            margin-top: 2rem;
+            text-align: center;
+            font-style: italic;
+            background: #f7faff;
+            padding: 0.7rem;
+            border-radius: 60px;
+            border: 1px solid #d8e8f5;
+        }
+
+        /* ---------- Move Page Up/Down (floating buttons) ---------- */
+        .page-nav {
+            position: fixed;
+            right: 24px;
+            bottom: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+        .page-nav button {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: #1a7f64;
+            color: white;
+            border: none;
+            font-size: 1.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 40, 30, 0.3);
+            transition: 0.2s;
+            border: 2px solid rgba(255,255,255,0.5);
+            line-height: 1;
+            user-select: none;
+        }
+        .page-nav button:hover {
+            background: #0e604b;
+            transform: scale(1.08);
+            box-shadow: 0 12px 28px rgba(0, 40, 30, 0.4);
+        }
+        .page-nav button:active {
+            transform: scale(0.96);
+        }
+        @media (max-width: 600px) {
+            .paper { padding: 1.4rem; }
+            h1 { font-size: 1.4rem; }
+            .subhead { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
+            .page-nav { right: 14px; bottom: 18px; gap: 8px; }
+            .page-nav button { width: 46px; height: 46px; font-size: 1.5rem; }
+            h2 .badge { margin-left: 0; }
+        }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+    <!-- Floating Page Up/Down buttons -->
+    <div class="page-nav" aria-label="பக்க வழிசெலுத்தல்">
+        <button id="pageUpBtn" title="மேலே செல் (Page Up)">▲</button>
+        <button id="pageDownBtn" title="கீழே செல் (Page Down)">▼</button>
+    </div>
+
+    <div class="paper">
+        <h1>📘 தரவு & தகவல் – அலகு 1.1 & 1.2</h1>
+        <div class="subhead">
+            <div>⏳ கால அளவு: <strong>10 நிமிடங்கள்</strong> | மொத்தப் புள்ளிகள்: <strong>16</strong></div>
+            <div class="timer" id="timerDisplay">
+                ⏱️ <span id="time">10:00</span>
+            </div>
+        </div>
+
+        <!-- பகுதி A -->
+        <section>
+            <h2>பகுதி A: பல்தேர்வு வினாக்கள் <span class="badge">3 × 2 = 6 புள்ளிகள்</span></h2>
+
+            <!-- வினா 1 -->
+            <div class="question" data-q="1">
+                <p>1. பின்வருவனவற்றுள் பண்புசார் தரவுக்கு (Qualitative Data) பொருத்தமான உதாரணம் எது?</p>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q1" value="0"> அ) மாணவர் ஒருவரின் வயது</label>
+                    <label class="option"><input type="radio" name="q1" value="1"> ஆ) நிறுவனத்தின் நற்பெயர்</label>
+                    <label class="option"><input type="radio" name="q1" value="2"> இ) பரீட்சைப் புள்ளி</label>
+                    <label class="option"><input type="radio" name="q1" value="3"> ஈ) வகுப்பறையிலுள்ள மாணவர்களின் எண்ணிக்கை</label>
+                </div>
+            </div>
+
+            <!-- வினா 2 – அளவுசார் தரவு -->
+            <div class="question" data-q="2">
+                <p>2. பின்வருவனவற்றுள் அளவுசார் தரவுக்கு (Quantitative Data) பொருத்தமான உதாரணம் எது?</p>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q2" value="0"> அ) மாணவர்களின் முடி நிறம்</label>
+                    <label class="option"><input type="radio" name="q2" value="1"> ஆ) வகுப்பறையிலுள்ள மாணவர்களின் எண்ணிக்கை</label>
+                    <label class="option"><input type="radio" name="q2" value="2"> இ) நிறுவனத்தின் நற்பெயர்</label>
+                    <label class="option"><input type="radio" name="q2" value="3"> ஈ) பாடசாலையின் பெயர்</label>
+                </div>
+            </div>
+
+            <!-- வினா 3 -->
+            <div class="question" data-q="3">
+                <p>3. பின்வருவனவற்றுள் தொடர் தரவு / மாறும் தரவுக்கு (Continuous Data) உதாரணம் எது?</p>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q3" value="0"> அ) ஒரு டசின் முட்டைகளின் எண்ணிக்கை</label>
+                    <label class="option"><input type="radio" name="q3" value="1"> ஆ) பாடசாலையிலுள்ள கணிப்பொறிகளின் எண்ணிக்கை</label>
+                    <label class="option"><input type="radio" name="q3" value="2"> இ) ஒரு நகரத்தின் வெப்பநிலை (35°C)</label>
+                    <label class="option"><input type="radio" name="q3" value="3"> ஈ) ஒரு புத்தகத்தின் பக்கங்களின் எண்ணிக்கை</label>
+                </div>
+            </div>
+        </section>
+
+        <!-- பகுதி B -->
+        <section>
+            <h2>பகுதி B: குறுவினாக்கள் <span class="badge">10 புள்ளிகள்</span></h2>
+
+            <div class="question" data-q="4">
+                <p>4. சுருக்கமான வரைவிலக்கணம் தருக: <strong>(4 புள்ளிகள்)</strong></p>
+                <div class="short-answer">
+                    <label>🔹 தரவு (Data) – (2 புள்ளிகள்)</label>
+                    <textarea id="dataDef"></textarea>
+                </div>
+                <div class="short-answer">
+                    <label>🔹 தகவல் (Information) – (2 புள்ளிகள்)</label>
+                    <textarea id="infoDef"></textarea>
+                </div>
+            </div>
+
+            <div class="question" data-q="5">
+                <p>5. தரவு வாழ்க்கை வட்டத்தின் (Data Life Cycle) மூன்று (3) பிரதான படிமுறைகளையும் வரிசைப்படி குறிப்பிடுக. <strong>(3 புள்ளிகள்)</strong></p>
+                <div class="short-answer">
+                    <label>படிமுறை 1</label>
+                    <input type="text" id="lifecycle1">
+                </div>
+                <div class="short-answer">
+                    <label>படிமுறை 2</label>
+                    <input type="text" id="lifecycle2">
+                </div>
+                <div class="short-answer">
+                    <label>படிமுறை 3</label>
+                    <input type="text" id="lifecycle3">
+                </div>
+            </div>
+
+            <div class="question" data-q="6">
+                <p>6. ஒரு சிறந்த தகவலில் காணப்பட வேண்டிய மூன்று (3) முக்கியமான பண்புகளைக் குறிப்பிடுக. <strong>(3 புள்ளிகள்)</strong></p>
+                <div class="short-answer">
+                    <label>பண்பு 1</label>
+                    <input type="text" id="quality1">
+                </div>
+                <div class="short-answer">
+                    <label>பண்பு 2</label>
+                    <input type="text" id="quality2">
+                </div>
+                <div class="short-answer">
+                    <label>பண்பு 3</label>
+                    <input type="text" id="quality3">
+                </div>
+            </div>
+        </section>
+
+        <!-- Buttons -->
+        <div class="btn-group">
+            <button class="btn" id="submitBtn">✅ சமர்ப்பித்து மதிப்பிடு</button>
+            <button class="btn secondary" id="resetBtn">🔄 மீளமை</button>
+        </div>
+
+        <!-- Result Area -->
+        <div class="result-area" id="resultArea">
+            <div id="scoreText"></div>
+            <div class="correction" id="correctionDetails"></div>
+        </div>
+        <div class="note">⏳ நேர முகாமைத்துவக் குறிப்பு: பகுதி A – 3 நிமிடங்கள் | பகுதி B – 7 நிமிடங்கள்</div>
+    </div>
+
+    <script>
+        (function() {
+            // ---------- Timer ----------
+            const totalTime = 10 * 60;
+            let timeLeft = totalTime;
+            let timerInterval = null;
+            let submitted = false;
+
+            const timerSpan = document.getElementById('time');
+            const submitBtn = document.getElementById('submitBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const resultArea = document.getElementById('resultArea');
+            const scoreText = document.getElementById('scoreText');
+            const correctionDetails = document.getElementById('correctionDetails');
+
+            const MAX_SCORE = 16;
+
+            function updateTimerDisplay() {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerSpan.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                if (timeLeft <= 0) timerSpan.textContent = '00:00';
+            }
+
+            function startTimer() {
+                if (timerInterval) clearInterval(timerInterval);
+                timerInterval = setInterval(() => {
+                    if (submitted) return;
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        if (!submitted) autoSubmit();
+                        return;
+                    }
+                    timeLeft--;
+                    updateTimerDisplay();
+                }, 1000);
+            }
+
+            function autoSubmit() {
+                if (submitted) return;
+                submitted = true;
+                if (timerInterval) clearInterval(timerInterval);
+                evaluateAndShowResults();
+            }
+
+            // ---------- Evaluation ----------
+            function evaluateAndShowResults() {
+                // பகுதி A
+                const q1Answer = document.querySelector('input[name="q1"]:checked');
+                const q2Answer = document.querySelector('input[name="q2"]:checked');
+                const q3Answer = document.querySelector('input[name="q3"]:checked');
+
+                let partAScore = 0;
+                if (q1Answer && q1Answer.value === '1') partAScore += 2;
+                if (q2Answer && q2Answer.value === '1') partAScore += 2;
+                if (q3Answer && q3Answer.value === '2') partAScore += 2;
+
+                // பகுதி B
+                const dataDef = document.getElementById('dataDef').value.trim();
+                const infoDef = document.getElementById('infoDef').value.trim();
+                let q4Score = 0;
+                if (dataDef.length >= 5) q4Score += 2;
+                if (infoDef.length >= 5) q4Score += 2;
+
+                const lc1 = document.getElementById('lifecycle1').value.trim();
+                const lc2 = document.getElementById('lifecycle2').value.trim();
+                const lc3 = document.getElementById('lifecycle3').value.trim();
+                let q5Score = 0;
+                if (lc1.length >= 2) q5Score += 1;
+                if (lc2.length >= 2) q5Score += 1;
+                if (lc3.length >= 2) q5Score += 1;
+
+                const q1p = document.getElementById('quality1').value.trim();
+                const q2p = document.getElementById('quality2').value.trim();
+                const q3p = document.getElementById('quality3').value.trim();
+                let q6Score = 0;
+                if (q1p.length >= 2) q6Score += 1;
+                if (q2p.length >= 2) q6Score += 1;
+                if (q3p.length >= 2) q6Score += 1;
+
+                const partBScore = q4Score + q5Score + q6Score;
+                const totalScore = partAScore + partBScore;
+                const percentage = Math.round((totalScore / MAX_SCORE) * 100);
+
+                let feedback = '';
+                if (totalScore >= 14) feedback = '🌟 சிறப்பு!';
+                else if (totalScore >= 11) feedback = '👍 நல்லது!';
+                else if (totalScore >= 8) feedback = '📖 மேலும் படிக்கவும்';
+                else feedback = '💪 மீண்டும் முயற்சி செய்க';
+
+                scoreText.innerHTML = `<span class="score-highlight">${totalScore} / ${MAX_SCORE}</span> (${percentage}%) – ${feedback}`;
+
+                let detailsHTML = `<details><summary>📝 சரியான விடைகள் & மதிப்பீட்டு விவரம்</summary><ul>`;
+                detailsHTML += `<li><strong>வினா 1:</strong> ஆ) நிறுவனத்தின் நற்பெயர் (பண்புசார் தரவு) ${q1Answer && q1Answer.value === '1' ? '✅' : '❌'}</li>`;
+                detailsHTML += `<li><strong>வினா 2:</strong> ஆ) வகுப்பறையிலுள்ள மாணவர்களின் எண்ணிக்கை (அளவுசார் தரவு) ${q2Answer && q2Answer.value === '1' ? '✅' : '❌'}</li>`;
+                detailsHTML += `<li><strong>வினா 3:</strong> இ) ஒரு நகரத்தின் வெப்பநிலை (35°C) (தொடர் தரவு) ${q3Answer && q3Answer.value === '2' ? '✅' : '❌'}</li>`;
+                detailsHTML += `<li><strong>வினா 4 (4 புள்ளிகள்):</strong> தரவு – மூல உண்மைகள்; தகவல் – செயற்படுத்தப்பட்ட தரவு. (பெற்றது: ${q4Score}/4)</li>`;
+                detailsHTML += `<li><strong>வினா 5 (3 புள்ளிகள்):</strong> சேகரிப்பு → சேமிப்பு/செயற்படுத்தல் → பகுப்பாய்வு/பகிர்வு (பெற்றது: ${q5Score}/3)</li>`;
+                detailsHTML += `<li><strong>வினா 6 (3 புள்ளிகள்):</strong> எ.கா. துல்லியம், காலத்திற்கேற்றது, பொருத்தம் (பெற்றது: ${q6Score}/3)</li>`;
+                detailsHTML += `</ul><p style="margin-top:1rem; font-weight:600;">மொத்தம்: ${totalScore}/${MAX_SCORE} (பகுதி A: ${partAScore}/6, பகுதி B: ${partBScore}/10)</p></details>`;
+
+                correctionDetails.innerHTML = detailsHTML;
+                resultArea.classList.add('show');
+            }
+
+            function handleSubmit() {
+                if (submitted) return;
+                submitted = true;
+                if (timerInterval) clearInterval(timerInterval);
+                evaluateAndShowResults();
+            }
+
+            function resetQuiz() {
+                if (timerInterval) clearInterval(timerInterval);
+                timeLeft = totalTime;
+                submitted = false;
+                updateTimerDisplay();
+
+                document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+                document.querySelectorAll('input[type="text"], textarea').forEach(i => i.value = '');
+
+                resultArea.classList.remove('show');
+                correctionDetails.innerHTML = '';
+                scoreText.innerHTML = '';
+
+                startTimer();
+            }
+
+            // ---------- Event listeners ----------
+            submitBtn.addEventListener('click', handleSubmit);
+            resetBtn.addEventListener('click', resetQuiz);
+
+            // ---------- Page Up / Down buttons ----------
+            document.getElementById('pageUpBtn').addEventListener('click', function() {
+                window.scrollBy({ top: -window.innerHeight * 0.8, behavior: 'smooth' });
+            });
+            document.getElementById('pageDownBtn').addEventListener('click', function() {
+                window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' });
+            });
+
+            // Init
+            updateTimerDisplay();
+            startTimer();
+        })();
+    </script>
+</body>
+</html>
